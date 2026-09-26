@@ -4,3 +4,25 @@
 body {
   font-family: var(--font-oswald), sans-serif;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0b0c0f;
+  color: #F3F4F6; /* Off-white text for comfortable contrast on dark slate */
+}

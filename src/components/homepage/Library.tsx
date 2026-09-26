@@ -13,7 +13,7 @@ const Library = async () => {
 
 
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto mb-20'>
             <div>
                 <h1 className='text-3xl font-bold'>THE LIBRARY</h1>
                 <p className='text-gray-500 mb-10'>Twelve lifts covering every major muscle group.</p>

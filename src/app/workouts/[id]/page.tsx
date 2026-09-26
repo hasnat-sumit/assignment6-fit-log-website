@@ -3,6 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import PlanActionButtons from '@/components/PlanActionButtons';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'] });
 
 type Card = {
   id: string | number;
@@ -20,16 +23,21 @@ type Card = {
   calories?: number | string;
 };
 
-// 1. Fetch function to reuse across static param generation and page rendering
+// 1. Fetch function with try/catch network timeout protection
 async function getWorkouts(): Promise<Card[]> {
-  const res = await fetch('https://api.abcz.workers.dev/api/fitlog', {
-    next: { revalidate: 3600 }, // Revalidate every hour
-  });
+  try {
+    const res = await fetch('https://api.abcz.workers.dev/api/fitlog', {
+      next: { revalidate: 3600 }, // Revalidate every hour
+    });
 
-  if (!res.ok) return [];
+    if (!res.ok) return [];
 
-  const data = await res.json();
-  return Array.isArray(data) ? data : data?.data || [];
+    const data = await res.json();
+    return Array.isArray(data) ? data : data?.data || [];
+  } catch (error) {
+    console.error('Failed to fetch workouts:', error);
+    return [];
+  }
 }
 
 // 2. generateStaticParams runs at build time to create static HTML pages
@@ -57,7 +65,8 @@ export default async function WorkoutDetailPage({
   }
 
   return (
-    <div className="container mx-auto px-4 py-10">
+    // Single inter.className applied at root wrapper so all subcomponents & text inherit Inter
+    <div className={`${inter.className} container mx-auto px-4 py-10`}>
       <Link
         href="/"
         className="mb-6 inline-block text-sm text-gray-400 hover:text-white"
@@ -82,10 +91,10 @@ export default async function WorkoutDetailPage({
 
         {/* Right Column: Workout Info & Actions */}
         <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 text-white">
-          <h1 className="text-3xl font-bold text-lime-400">{workout.name}</h1>
+          <h1 className="text-3xl font-bold text-white">{workout.name}</h1>
 
           {workout.description && (
-            <p className="mt-4 text-gray-300">{workout.description}</p>
+            <p className="mt-4 text-[15px] text-gray-300">{workout.description}</p>
           )}
 
           <div className="my-4 flex flex-wrap gap-2">
@@ -97,11 +106,6 @@ export default async function WorkoutDetailPage({
                 {group}
               </span>
             ))}
-          </div>
-
-          <div className="my-4 flex items-center gap-6 text-sm text-gray-400">
-            {workout.rating && <span>⭐ {workout.rating}</span>}
-            {workout.duration && <span>⏱️ {workout.duration}</span>}
           </div>
 
           {/* Specs Table */}
@@ -132,17 +136,17 @@ export default async function WorkoutDetailPage({
             if (specItems.length === 0) return null;
 
             return (
-              <div className="my-6 w-full rounded-2xl border border-zinc-800 bg-[#12151c] px-6 py-2 text-zinc-300 shadow-xl">
+              <div className="my-4 w-full rounded-2xl border border-zinc-800 bg-[#12151c] px-6 py-2 text-zinc-300 shadow-xl">
                 <div className="divide-y divide-zinc-800/60">
                   {specItems.map((spec, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between py-4 text-sm"
+                      className="flex items-center justify-between py-2 text-[12px]"
                     >
-                      <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                      <span className="text-[12px] font-semibold uppercase tracking-wider text-zinc-400">
                         {spec.label}
                       </span>
-                      <span className="font-medium text-zinc-100">
+                      <span className="font-medium text-zinc-400">
                         {spec.value}
                       </span>
                     </div>
@@ -155,10 +159,10 @@ export default async function WorkoutDetailPage({
           {/* Instructions */}
           {workout.instructions && Array.isArray(workout.instructions) ? (
             <div className="mt-6">
-              <h2 className="mb-3 text-lg font-semibold text-lime-400">
-                Instructions
+              <h2 className="mb-2 text-lg font-semibold text-white">
+                INSTRUCTIONS
               </h2>
-              <ol className="list-inside list-decimal space-y-2 text-gray-300">
+              <ol className="list-inside list-decimal space-y-2 text-[12px] text-gray-300">
                 {workout.instructions.map((step, index) => (
                   <li key={index} className="leading-relaxed">
                     {step}
@@ -168,7 +172,7 @@ export default async function WorkoutDetailPage({
             </div>
           ) : (
             workout.instructions && (
-              <p className="mt-4 text-gray-300">{workout.instructions}</p>
+              <p className="mt-2 text-gray-300">{workout.instructions}</p>
             )
           )}
 

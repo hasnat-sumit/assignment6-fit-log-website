@@ -9,7 +9,7 @@ const Navbar = () => {
     const { todayPlan, savedPlan } = usePlan();
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b border-zinc-800 bg-zinc-950/90 backdrop-blur-md">
+        <nav className="sticky top-0 z-50 w-full border-b border-zinc-800 backdrop-blur-md">
             <div className="container mx-auto flex h-16 items-center justify-between px-6">
 
                 {/* SECTION 1: Logo + Name */}
