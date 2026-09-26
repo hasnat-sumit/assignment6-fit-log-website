@@ -230,7 +230,7 @@ export default function MyPlanPage() {
                 >
                   {/* Left Section: Thumbnail & Workout Details */}
                   <div className="flex items-center gap-4">
-                    <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-xl bg-zinc-800">
+                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-zinc-800">
                       {workout.image ? (
                         <Image
                           src={workout.image}
