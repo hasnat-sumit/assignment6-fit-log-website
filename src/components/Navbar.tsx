@@ -24,7 +24,7 @@ const Navbar = () => {
                 <div className="flex items-center gap-6">
                     <Link
                         href="/"
-                        className="text-sm font-semibold text-zinc-300 transition-colors hover:text-lime-400"
+                        className="text-sm font-semibold text-zinc-300 transition-colors hover:text-lime-400 hover:rounded-4xl hover:bg-lime-900"
                     >
                         Workouts
                     </Link>
@@ -42,7 +42,7 @@ const Navbar = () => {
                     {/* Plan Badge */}
                     <Link
                         href="/"
-                        className="flex items-center gap-2 rounded-full bg-zinc-900/80 px-3 py-1.5 text-xs font-semibold text-zinc-200 transition-colors hover:bg-zinc-800"
+                        className="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-zinc-200 transition-colors "
                     >
                         <span>Plan</span>
                         <span className="flex h-5 w-5 items-center justify-center rounded-full bg-lime-400 text-xs font-bold text-black">
@@ -53,7 +53,7 @@ const Navbar = () => {
                     {/* Saved Badge */}
                     <Link
                         href="/"
-                        className="flex items-center gap-2 rounded-full bg-zinc-900/80 px-3 py-1.5 text-xs font-semibold text-zinc-200 transition-colors hover:bg-zinc-800"
+                        className="flex items-center gap-2  px-3 py-1.5 text-xs font-semibold text-zinc-200 transition-colors"
                     >
                         <span>Saved</span>
                         <span className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-700 text-xs font-bold text-white">

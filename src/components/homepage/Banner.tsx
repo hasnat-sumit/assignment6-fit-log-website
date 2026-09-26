@@ -3,7 +3,7 @@ import React from 'react';
 
 const Banner = () => {
     return (
-        <div className=' flex justify-between items-center container mx-auto mt-15 mb-20 border  border-gray-800/50 rounded-2xl px-10 py-10 bg-[#16181e]'>
+        <div className=' flex justify-between items-center container mx-auto mt-15 mb-20 border border-gray-800/50 rounded-2xl px-10 py-10 bg-[#16181e]'>
             <div className=''>
                 <h4 className='mb-5 text-lime-400'>WORKOUT LIBRARY</h4>
                 <h1 className='text-5xl font-bold text-white mb-5'>TRAIN WITH INTENT. LOG <br /> EVERY SET.</h1>
