@@ -1,15 +1,10 @@
 import React from 'react';
 import ProductCard from '../ProductCard';
 
-type Card = {
-    id: string | number;
-    name: string;
-};
-
 const Library = async () => {
 
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog');
-    const cardData: Card[] = await res.json();
+    const cardData: React.ComponentProps<typeof ProductCard>['card'][] = await res.json();
 
 
     return (

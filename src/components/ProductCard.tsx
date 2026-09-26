@@ -11,7 +11,7 @@ const ProductCard = ({ card }: { card: DataType }) => {
       <div className="bg-[#16181e] rounded-2xl overflow-hidden shadow-lg border border-gray-800/50 flex flex-col h-full transition-transform duration-200 group-hover:-translate-y-1">
         
         {/* Top Half: Image with fixed aspect ratio */}
-        <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-900">
+        <div className="relative w-full aspect-video overflow-hidden bg-gray-900">
           <Image
             src={card.image}
             alt={card.name}
@@ -22,7 +22,7 @@ const ProductCard = ({ card }: { card: DataType }) => {
         </div>
 
         {/* Bottom Half: Content */}
-        <div className="p-5 flex flex-col justify-between flex-grow gap-4">
+        <div className="p-5 flex flex-col justify-between grow gap-4">
           
           <div className="space-y-3">
             {/* Muscle Group Badges */}
