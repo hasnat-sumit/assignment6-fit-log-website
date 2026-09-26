@@ -1,49 +1,69 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { usePlan } from '@/context/planContext';
 
 const Navbar = () => {
+    const { todayPlan, savedPlan } = usePlan();
+
     return (
+        <nav className="sticky top-0 z-50 w-full border-b border-zinc-800 bg-zinc-950/90 backdrop-blur-md">
+            <div className="container mx-auto flex h-16 items-center justify-between px-6">
 
-        <div className="navbar bg-base-100 shadow-sm container mx-auto">
-            <div className="navbar-start">
-                <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg aria-label="Menu" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-                    </div>
-                    <ul
-                        tabIndex={-1}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li><a>Item 1</a></li>
-                        <li>
-                            <a>Parent</a>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Item 3</a></li>
-                    </ul>
-                </div>
-                <div className='flex items-center gap-2 font-bold'>
-                    <Image src="/assets/logo.png" alt=" logo" width={40} height={40} />
-                    FITLOG
+                {/* SECTION 1: Logo + Name */}
+                <div className="flex items-center gap-2">
+                    <Link href="/" className="flex items-center gap-2 font-bold text-white hover:opacity-90">
+                        <Image src="/assets/logo.png" alt="FITLOG Logo" width={36} height={36} />
+                        <span className="text-xl tracking-wider">FITLOG</span>
+                    </Link>
                 </div>
 
-            </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    <li><Link href='/workouts' className='text-lime-300 border-none rounded-2xl bg-lime-950'>Workouts</Link></li>
+                {/* SECTION 2: Workouts, My Plan (Clicking Workouts goes to Homepage) */}
+                <div className="flex items-center gap-6">
+                    <Link
+                        href="/"
+                        className="text-sm font-semibold text-zinc-300 transition-colors hover:text-lime-400"
+                    >
+                        Workouts
+                    </Link>
 
-                    <li><Link href="/myPlan">My Plan</Link></li>
-                </ul>
-            </div>
-            <div className="navbar-end gap-4">
-                <button className="btn border-none">Plan</button>
-                <button className="btn border-none">Saved</button>
-            </div>
-        </div>
+                    <Link
+                        href="/my-plan"
+                        className="text-sm font-semibold text-zinc-300 transition-colors hover:text-lime-400"
+                    >
+                        My Plan
+                    </Link>
+                </div>
 
+                {/* SECTION 3: Plan, Saved (Clicking takes to Homepage, No Borders) */}
+                <div className="flex items-center gap-3">
+                    {/* Plan Badge */}
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2 rounded-full bg-zinc-900/80 px-3 py-1.5 text-xs font-semibold text-zinc-200 transition-colors hover:bg-zinc-800"
+                    >
+                        <span>Plan</span>
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-lime-400 text-xs font-bold text-black">
+                            {todayPlan.length}
+                        </span>
+                    </Link>
+
+                    {/* Saved Badge */}
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2 rounded-full bg-zinc-900/80 px-3 py-1.5 text-xs font-semibold text-zinc-200 transition-colors hover:bg-zinc-800"
+                    >
+                        <span>Saved</span>
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-700 text-xs font-bold text-white">
+                            {savedPlan.length}
+                        </span>
+                    </Link>
+                </div>
+
+            </div>
+        </nav>
     );
 };
 

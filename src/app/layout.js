@@ -1,13 +1,14 @@
 import { Oswald } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-
+import { Toaster } from "react-hot-toast";
+import { PlanProvider } from '@/context/planContext';
 
 const oswald = Oswald({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"], // 👈 Add the weights you need
   variable: "--font-oswald",
-  display: "swap", 
+  display: "swap",
 });
 
 
@@ -20,14 +21,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={oswald.variable}> 
+    <html lang="en" className={oswald.variable}>
       <body className="min-h-full flex flex-col">
-        <Navbar/>
         
-        {children}
-        
-        
-        </body>
+        <PlanProvider>
+          <Navbar />
+          {children}
+          <Toaster position="bottom-right" />
+        </PlanProvider>
+
+
+      </body>
     </html>
   );
 }
