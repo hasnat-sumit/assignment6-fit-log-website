@@ -24,14 +24,16 @@ const Navbar = () => {
                 <div className="flex items-center gap-6">
                     <Link
                         href="/"
-                        className="text-sm font-semibold text-zinc-300 transition-colors hover:text-lime-400 hover:rounded-4xl hover:bg-lime-900"
+                        className="text-sm font-semibold text-zinc-300 transition-colors 
+                        hover:border-none hover:rounded-4xl hover:bg-[#091e02] hover:px-4 py-1 hover:text-lime-400"
                     >
                         Workouts
                     </Link>
 
                     <Link
                         href="/my-plan"
-                        className="text-sm font-semibold text-zinc-300 transition-colors hover:text-lime-400"
+                        className="text-sm font-semibold text-zinc-300 transition-colors 
+                        hover:border-none hover:rounded-4xl hover:bg-[#091e02] hover:px-4 py-1 hover:text-lime-400"
                     >
                         My Plan
                     </Link>
